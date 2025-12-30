@@ -75,6 +75,39 @@
     <p style="opacity:.7; font-size:13px; margin-top:12px;">
       Prototype version. Saves automatically.
     </p>
-  </div>
+  </div><script>
+  const nameInput = document.querySelector("input");
+  const sexSelect = document.querySelector("select");
+  const adoptButton = document.querySelector("button");
+  const resetButton = document.querySelector(".danger");
+
+  adoptButton.addEventListener("click", () => {
+    const name = nameInput.value.trim();
+    const sex = sexSelect.value;
+
+    if (!name) {
+      alert("Your celestial cub needs a name ✨");
+      return;
+    }
+
+    const tiger = {
+      name,
+      sex,
+      age: "cub",
+      bond: 1,
+      adoptedAt: new Date().toISOString()
+    };
+
+    localStorage.setItem("moonlitTiger", JSON.stringify(tiger));
+
+    alert(`✨ ${name} has been adopted.\nA soft purr echoes under the moonlight.`);
+  });
+
+  resetButton.addEventListener("click", () => {
+    localStorage.removeItem("moonlitTiger");
+    alert("The moon resets the story 🌙");
+    location.reload();
+  });
+</script>
 </body>
 </html>
